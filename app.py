@@ -1,5 +1,5 @@
 import uvicorn
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, File, UploadFile
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
@@ -23,6 +23,9 @@ async def upload(request: Request):
     context = {"request": request}
     return templates.TemplateResponse("upload.html", context=context)
 
+@app.post("/upload/")
+async def create_upload_file(file: UploadFile):
+    return {"filename": file.filename}
 
 # uvicorn app:app --reload --host localhost --port 8001
 if __name__ == '__main__':
