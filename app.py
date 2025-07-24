@@ -61,6 +61,7 @@ async def upload_image(file: UploadFile = File(...)):
     print(f"{save_path=}")
 
     return PlainTextResponse(f"POST request completed {file.filename}")
+
 @app.post("/delete-image/")
 async def delete_image(image_name: str = Form(...)):
     image_path = Path("images") / image_name
