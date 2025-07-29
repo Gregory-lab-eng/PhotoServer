@@ -1,4 +1,4 @@
-FROM python:3.13
+FROM python:3.12
 
 RUN useradd -m -u 1000 user
 USER user
@@ -11,3 +11,7 @@ RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 COPY --chown=user . /app
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
+
+LABEL version="1.0"
+LABEL description="Python application Docker image"
+LABEL maintainer="GS"
